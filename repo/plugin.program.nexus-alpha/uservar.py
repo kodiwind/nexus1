@@ -17,7 +17,7 @@ ADDONTITLE = 'Nexus Alpha Wizard '
 BUILDERNAME = 'The Hood'
 EXCLUDES = [ADDON_ID, 'repository.openwizard']
 # Text File with build info in it.
-BUILDFILE = 'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Nexus/texts/alpha_builds1.txt'
+BUILDFILE = 'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Nexus/texts/builds1.txt'
 # How often you would like it to check for build updates in days
 # 0 being every startup of kodi
 UPDATECHECK = 0
@@ -99,9 +99,9 @@ AUTOINSTALL = 'No'
 # Addon ID for the repository
 REPOID = 'repository.nexus'
 # Url to Addons.xml file in your repo folder(this is so we can get the latest version)
-REPOADDONXML = 'https://kodiwind.com/nexus/_repo/addons.xml'
+REPOADDONXML = 'https://raw.githubusercontent.com/kodiwind/nexus/main/repo/zips/addons.xml'
 # Url to folder zip is located in
-REPOZIPURL = 'https://kodiwind.com/nexus/_repo/repository.nexus/repository.nexus-1.3.8.zip'
+REPOZIPURL = 'https://raw.githubusercontent.com/kodiwind/nexus/main/repo/zips/'
 #########################################################
 
 #########################################################
@@ -110,16 +110,16 @@ REPOZIPURL = 'https://kodiwind.com/nexus/_repo/repository.nexus/repository.nexus
 # Enable Notification screen Yes or No
 ENABLE = 'Yes'
 # Url to notification file
-NOTIFICATION = 'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Nexus/texts/notify.txt'
+NOTIFICATION = 'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Nexus/texts/notify1.txt'
 # Use either 'Text' or 'Image'
 HEADERTYPE = 'Text'
 # Font size of header
-FONTHEADER = 'Font22'
-HEADERMESSAGE = ''
+FONTHEADER = 'Font16'
+HEADERMESSAGE = 'Nexus Alpha Wizard'
 # url to image if using Image 424x180
 HEADERIMAGE = 'http://'
 # Font for Notification Window
-FONTSETTINGS = 'Font16'
+FONTSETTINGS = 'Font12'
 # Background for Notification Window
 BACKGROUND = 'http://'
 #########################################################
