@@ -99,9 +99,9 @@ AUTOINSTALL = 'No'
 # Addon ID for the repository
 REPOID = 'repository.nexus'
 # Url to Addons.xml file in your repo folder(this is so we can get the latest version)
-REPOADDONXML = 'http://'
+REPOADDONXML = 'https://raw.githubusercontent.com/kodiwind/nexus/main/repo/zips/addons.xml'
 # Url to folder zip is located in
-REPOZIPURL = 'http://'
+REPOZIPURL = 'https://raw.githubusercontent.com/kodiwind/nexus/main/repo/zips/'
 #########################################################
 
 #########################################################
