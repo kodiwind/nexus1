@@ -3708,6 +3708,8 @@ def main_menu(time_data):
     #aa=addDir3('Name', 'Your Jen Address',189,'Iconimage','fanart','Description',search_db='Your Search db Address')
     #all_d.append(aa)
     #'https://pastebin.com/raw/RSNiR9M2'
+    aa=addDir3('[B][COLOR snow]Athena Christmas[/COLOR][/B]', 'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Docs/xmls/builds/Morbius/christmas.xml',189,'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Nexus/Artwork/Athena_artwork/icon.png','https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Nexus/Artwork/Athena_artwork/fanart.jpg','Athena Christmas',)
+    all_d.append(aa)     
     aa=addDir3('Athena', 'https://pastebin.com/raw/RSNiR9M2',189,'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Nexus/Artwork/Athena_artwork/icon.png','https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Nexus/Artwork/Athena_artwork/fanart.jpg','Athena')
     all_d.append(aa)
    

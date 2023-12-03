@@ -3686,9 +3686,11 @@ def main_menu(time_data):
     elapsed_time = time.time() - start_time_start
     time_data.append(elapsed_time+222)
     all_d=[]
-    aa=addDir3('[B][COLOR mediumslateblue]Morbius RD 1 Click Movies[/COLOR][/B]', 'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Docs/xmls/builds/Morbius/main_movies4k.xml',189,'https://kodiwind.com/hw/build_artwork/morbius/icon1.png','https://kodiwind.com/hw/build_artwork/morbius/fanart.jpg','Morbius RD 1 Click Movies',search_db='')
+    aa=addDir3('[B][COLOR mediumslateblue]Morbius Christmas[/COLOR][/B]', 'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Docs/xmls/builds/Morbius/christmas.xml',189,'https://kodiwind.com/hw/build_artwork/morbius/icon1.png','https://kodiwind.com/hw/build_artwork/morbius/fanart.jpg','Morbius Christmas',search_db='')
+    all_d.append(aa)    
+    aa=addDir3('[B][COLOR mediumslateblue]Morbius RD 1 Click Movies[/COLOR][/B]', 'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Docs/xmls/builds/Morbius/main1_movies4k.xml',189,'https://kodiwind.com/hw/build_artwork/morbius/icon1.png','https://kodiwind.com/hw/build_artwork/morbius/fanart.jpg','Morbius RD 1 Click Movies',search_db='')
     all_d.append(aa)  
-    aa=addDir3('[B][COLOR mediumslateblue]1 Click Movies by year[/COLOR][/B]', 'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Docs/xmls/builds/4k.json',189,'https://kodiwind.com/hw/build_artwork/morbius/icon1.png','https://kodiwind.com/hw/build_artwork/morbius/fanart.jpg','Movies',search_db='')
+    aa=addDir3('[B][COLOR mediumslateblue]1 Click Movies by year[/COLOR][/B]', 'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Docs/xmls/builds/Morbius/movie-years-tmdb.xml',189,'https://kodiwind.com/hw/build_artwork/morbius/icon1.png','https://kodiwind.com/hw/build_artwork/morbius/fanart.jpg','Movies',search_db='')
     all_d.append(aa)
     aa=addDir3('[B][COLOR mediumslateblue]Chill & Flix Movies[/COLOR][/B]', 'https://kodiwind.com/hw/xml/Morbius_xml/techs_trakt_lists_movies.xml',189,'https://kodiwind.com/hw/build_artwork/morbius/icon1.png','https://kodiwind.com/hw/build_artwork/morbius/fanart.jpg','Flix & Chill Movies',search_db='')
     all_d.append(aa)
