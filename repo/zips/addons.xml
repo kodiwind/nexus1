@@ -203,7 +203,7 @@
     </assets>
   </extension>
   
-</addon><addon id="plugin.video.morbius" name="Morbius" version="3.2.2" provider-name="The Hood">
+</addon><addon id="plugin.video.morbius" name="Morbius" version="3.4.3" provider-name="The Hood">
   <requires>
 	
   </requires>
@@ -221,6 +221,7 @@
     <platform>all</platform>
 	<assets>
             <icon>icon.png</icon>
+			<icon>icon2.png</icon>
             <fanart>fanart.jpg</fanart>
     </assets>
   </extension>
@@ -261,7 +262,7 @@
 		<fanart>fanart.jpg</fanart>
 	</assets>
   </extension>
-</addon><addon id="repository.nexus" name="Nexus Repo" version="3.0.4" provider-name="The Hood">
+</addon><addon id="repository.nexus" name="Nexus Repo" version="3.0.5" provider-name="The Hood">
     <extension point="xbmc.addon.repository" name="Nexus Repo">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/kodiwind/nexus/main/repo/zips/addons.xml</info>

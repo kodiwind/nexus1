@@ -43,6 +43,7 @@ BASE_LOGO=os.path.join(addonPath, 'resources', art_folder+'/')
 __addon__ = xbmcaddon.Addon()
 addon_name=__addon__.getAddonInfo('name')
 addon_id=__addon__.getAddonInfo('id')
+tmdb_key=Addon.getSetting("tmdb_api")
 try:
     import xbmc
     KODI_VERSION = int(xbmc.getInfoLabel("System.BuildVersion").split('.', 1)[0])
@@ -111,10 +112,10 @@ def get_imdb(tv_movie,id):
     tmdbKey='653bb8af90162bd98fc7ee32bcbbfb3d'
     if tv_movie=='tv':
       
-       url2='http://api.themoviedb.org/3/tv/%s?api_key=%s&append_to_response=external_ids'%(id,tmdbKey)
+       url2=f'https://api.themoviedb.org/3/tv/%s?api_key={tmdb_key}&append_to_response=external_ids'%(id)
     else:
        
-       url2='http://api.themoviedb.org/3/movie/%s?api_key=%s&append_to_response=external_ids'%(id,tmdbKey)
+       url2=f'https://api.themoviedb.org/3/movie/%s?api_key={tmdb_key}&append_to_response=external_ids'%(id)
     try:
         
         imdb_id=get_html(url2,timeout=10).json()['external_ids']['imdb_id']
@@ -187,7 +188,14 @@ def reset_trakt():
     ret =xbmcgui.Dialog().yesno(("Authenticate Trakt"), ("Clear Trakt Auth.?"))
     if ret:
       Addon.setSetting(SETTING_TRAKT_ACCESS_TOKEN, '')
-      xbmc.executebuiltin((u'Notification(%s,%s)' % (addon_name, ' Trakt Cleared'.decode('utf8'))).encode('utf-8'))
+      xbmc.executebuiltin(u'Notification(%s,%s)' % (addon_name, ' Trakt Cleared'))
+def refresh_trakt():
+    ret =xbmcgui.Dialog().yesno(("Authenticate Trakt"), ("ReAuthenticate?"))
+    if ret:
+      Addon.setSetting(SETTING_TRAKT_ACCESS_TOKEN, '')
+      xbmc.executebuiltin(u'Notification(%s,%s)' % (addon_name, ' Trakt Cleared'))
+      trakt_authenticate()
+      xbmc.executebuiltin(u'Notification(%s,%s)' % (addon_name, ' Done'))
 def trakt_get_device_code():
     data = { 'client_id': CLIENT_ID }
     return call_trakt("oauth/device/code", data=data, with_auth=False)
@@ -382,7 +390,7 @@ def cached_call_t(path, params={}, data=None, is_delete=False, with_auth=True, p
         params['page'] = page
         results = send_query()
 
-        if with_auth and results.status_code == 401 and xbmcgui.Dialog().yesno(("Authenticate Trakt"), ("You must authenticate with Trakt. Do you want to authenticate now?")) and trakt_authenticate():
+        if with_auth and results.status_code == 401 and xbmcgui.Dialog().yesno(("Authenticate Trakt"), ("You must authenticate2 with Trakt. Do you want to authenticate now?")) and trakt_authenticate():
             response = paginated_query(1)
             return response
         results.raise_for_status()
@@ -395,12 +403,15 @@ def cached_call_t(path, params={}, data=None, is_delete=False, with_auth=True, p
         status_code=200
         if 'error_code' in response:
             status_code=response['error_code']
-       
+        log.warning(status_code)
+        log.warning(with_auth)
+        check=False
         if Addon.getSetting("auto_trk")=='true':
             check=True
         else:
+            x=Addon.getSetting(SETTING_TRAKT_ACCESS_TOKEN)
             if with_auth and status_code == 401:
-                check=xbmcgui.Dialog().yesno(("Authenticate Trakt"),("You must authenticate with Trakt. Do you want to authenticate now?"))
+                check=xbmcgui.Dialog().yesno(("Authenticate Trakt"),("You must authenticate with1 Trakt. Do you want to authenticate now?"))
         if with_auth and status_code == 401 and check and trakt_authenticate():
             response = send_query()
         #response.raise_for_status()
@@ -516,16 +527,16 @@ def get_imdb_data(info,name_o,image,source,type):
            info['title']=name_o.replace('.',' ')
          if 1:
           if 'year' in info:
-            tmdb_data="https://api.tmdb.org/3/search/%s?api_key=%s&query=%s&year=%s&language=he&append_to_response=external_ids"%(type,tmdbKey,urllib.quote_plus(info['title']),info['year'])
+            tmdb_data=f"https://api.themoviedb.org/3/search/%s?api_key={tmdb_key}&query=%s&year=%s&language=he&append_to_response=external_ids"%(type,urllib.quote_plus(info['title']),info['year'])
             year_n=info['year']
           else:
-            tmdb_data="https://api.tmdb.org/3/search/%s?api_key=%s&query=%s&language=he&append_to_response=external_ids"%(type,tmdbKey,urllib.quote_plus(info['title']))
+            tmdb_data=f"https://api.themoviedb.org/3/search/%s?api_key={tmdb_key}&query=%s&language=he&append_to_response=external_ids"%(type,urllib.quote_plus(info['title']))
 
           all_data=get_html(tmdb_data).json()
           if 'results' in all_data:
            if len(all_data['results'])>0:
                 if (all_data['results'][0]['id'])!=None:
-                    url='https://api.themoviedb.org/3/%s/%s?api_key=%s&language=he&append_to_response=external_ids'%(type,all_data['results'][0]['id'],tmdbKey)
+                    url=f'https://api.themoviedb.org/3/%s/%s?api_key={tmdb_key}&language=he&append_to_response=external_ids'%(type,all_data['results'][0]['id'])
                     try:
                         all_d2=get_html(url).json()
                         imdb_id=all_d2['external_ids']['imdb_id']
