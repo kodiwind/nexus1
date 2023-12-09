@@ -129,12 +129,12 @@ msgid "Series Tracker"
 msgstr "מעקב סדרות"
 
 msgctxt "#32024"
-msgid "Movie World"
+msgid "Movie Motion"
 msgstr "סרטים"
 
 
 msgctxt "#32025"
-msgid "TV World"
+msgid "TV Motion"
 msgstr "סדרות"
 
 

@@ -107,12 +107,12 @@ msgid "Series Tracker"
 msgstr "Series Tracker"
 
 msgctxt "#32024"
-msgid "Movie World"
-msgstr "Movie World"
+msgid "Movie Motion"
+msgstr "Movie Motion"
 
 msgctxt "#32025"
-msgid "TV World"
-msgstr "TV World"
+msgid "TV Motion"
+msgstr "TV Motion"
 
 msgctxt "#32026"
 msgid "Trakt World - No Account Needed"

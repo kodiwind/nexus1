@@ -25,6 +25,7 @@ if KODI_VERSION<=18:
 else:
     que=urllib.parse.quote_plus
     url_encode=urllib.parse.urlencode
+tmdb_key=Addon.getSetting("tmdb_api")
 def get_html_g():
     from  resources.modules.client import get_html
     headers = {
@@ -41,12 +42,12 @@ def get_html_g():
     
     try:
         html_g_tv={}
-        url_g='https://api.themoviedb.org/3/genre/tv/list?api_key=34142515d9d23817496eeb4ff1d223d0&language='+lang
+        url_g=f'https://api.themoviedb.org/3/genre/tv/list?api_key={tmdb_key}&language='+lang
    
         html_g_tv=get_html(url_g,headers=headers).json()
          
         html_g_movie={}
-        url_g='https://api.themoviedb.org/3/genre/movie/list?api_key=34142515d9d23817496eeb4ff1d223d0&language='+lang
+        url_g=f'https://api.themoviedb.org/3/genre/movie/list?api_key={tmdb_key}&language='+lang
         html_g_movie=get_html(url_g,headers=headers).json()
     except Exception as e:
         log.warning('Err in HTML_G:'+str(e))
@@ -54,6 +55,13 @@ def get_html_g():
 time_to_save=int(Addon.getSetting("save_time"))
 #html_g_tv,html_g_movie=get_html_g()
 html_g_tv,html_g_movie=cache.get(get_html_g,time_to_save, table='posters')
+def meta_get(video_data,item):
+    if item=='year' or item=='rating' or item=='votes' or item=='duration':
+        return video_data.get(item,'0')
+    if item=='country' or item=='cast':
+        return video_data.get(item,[])
+    return video_data.get(item,' ')
+    
 def addNolink( name, url,mode,isFolder,fanart='DefaultFolder.png', iconimage="DefaultFolder.png",plot=' ',all_w_trk='',all_w={},heb_name=' ',data=' ',year=' ',generes=' ',rating=' ',trailer=' ',watched='no',original_title=' ',id=' ',season=' ',episode=' ' ,eng_name=' ',show_original_year=' ',dates=' ',dd=' ',dont_place=False):
  
             added_pre=''
@@ -161,7 +169,37 @@ def addNolink( name, url,mode,isFolder,fanart='DefaultFolder.png', iconimage="De
                liz.setProperty('ResumeTime', all_w[ee]['resume'])
                liz.setProperty('TotalTime', all_w[ee]['totaltime'])
             '''
-            liz.setInfo(type="Video", infoLabels=video_data)
+            if KODI_VERSION>19:
+                info_tag = liz.getVideoInfoTag()
+                info_tag.setMediaType(meta_get(video_data,'mediatype'))
+                info_tag.setTitle(meta_get(video_data,'title'))
+                info_tag.setPlot(meta_get(video_data,'plot'))
+                try:
+                    year_info=int(meta_get(video_data,'year'))
+                    if (year_info>0):
+                        info_tag.setYear(year_info)
+                except:
+                    pass
+                try:
+                    info_tag.setRating(float(meta_get(video_data,'rating')))
+                except:
+                    pass
+                info_tag.setVotes(int(meta_get(video_data,'votes')))
+                info_tag.setMpaa(meta_get(video_data,'mpaa'))
+                info_tag.setDuration(int(meta_get(video_data,'duration')))
+                info_tag.setCountries(meta_get(video_data,'country'))
+                
+                info_tag.setTrailer(meta_get(video_data,'trailer'))
+                info_tag.setPremiered(meta_get(video_data,'premiered'))
+                info_tag.setTagLine(meta_get(video_data,'tagline'))
+                info_tag.setStudios((meta_get(video_data,'studio') or '',))
+                info_tag.setUniqueIDs({'imdb': meta_get(video_data,'imdb'), 'tmdb':meta_get(video_data,'tmdb')})
+                info_tag.setGenres(meta_get(video_data,'genre').split(', '))
+                info_tag.setWriters(meta_get(video_data,'writer').split(', '))
+                info_tag.setDirectors(meta_get(video_data,'director').split(', '))
+                info_tag.setCast([xbmc_actor(name=item['name'], role=item['role'], thumbnail=item['thumbnail']) for item in meta_get(video_data,'cast')])
+            else:
+                liz.setInfo(type="Video", infoLabels=video_data)
             
             liz.setProperty( "Fanart_Image", fanart )
             liz.setProperty("IsPlayable","false")
@@ -258,6 +296,7 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
             return 0
         all_ur=utf8_urlencode(params)
         plugin_link=False
+        
         if 'plugin://' in url:
             u=url
             plugin_link=True
@@ -302,6 +341,8 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
             menu_items.append(('[I]%s[/I]'%Addon.getLocalizedString(32167), 'PlayMedia(%s)' % trailer))
         if Addon.getSetting("settings_content")=='true':
             menu_items.append(('%s'%Addon.getLocalizedString(32168), 'RunPlugin(%s?mode=151&url=www)' % sys.argv[0] ))
+        if description=='Tmdb_custom':
+            menu_items.append(('Remove', 'RunPlugin(%s?mode=204&url=%s)' % (sys.argv[0] ,que(url))))
         if len(id)>1:
          
             if '/tv' in url or '/shows' in url:
@@ -346,7 +387,7 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
          
         if Addon.getSetting("clear_Cache")=='true':
             menu_items.append(('[I]%s[/I]'%Addon.getLocalizedString(32176), 'RunPlugin(%s)' % ('%s?url=www&mode=35')%(sys.argv[0])))
-        log.warning(Addon.getSetting("set_view_type"))
+        
         if Addon.getSetting("set_view_type")=='true' :
             menu_items.append(('[I]%s[/I]'%Addon.getLocalizedString(32177), 'RunPlugin(%s)' % ('%s?url=%s&mode=167')%(sys.argv[0],str(pre_mode))))
         
@@ -456,8 +497,37 @@ def addDir3(name,url,mode,iconimage,fanart,description,premired=' ',image_master
         else:
             tt='Files'
         video_data['id']=id
-    
-        liz.setInfo( type=tt, infoLabels=video_data)
+        if KODI_VERSION>19:
+                info_tag = liz.getVideoInfoTag()
+                info_tag.setMediaType(meta_get(video_data,'mediatype'))
+                info_tag.setTitle(meta_get(video_data,'title'))
+                info_tag.setPlot(meta_get(video_data,'plot'))
+                try:
+                    year_info=int(meta_get(video_data,'year'))
+                    if (year_info>0):
+                        info_tag.setYear(year_info)
+                except:
+                    pass
+                try:
+                    info_tag.setRating(float(meta_get(video_data,'rating')))
+                except:
+                    pass
+                info_tag.setVotes(int(meta_get(video_data,'votes')))
+                info_tag.setMpaa(meta_get(video_data,'mpaa'))
+                info_tag.setDuration(int(meta_get(video_data,'duration')))
+                info_tag.setCountries(meta_get(video_data,'country'))
+                
+                info_tag.setTrailer(meta_get(video_data,'trailer'))
+                info_tag.setPremiered(meta_get(video_data,'premiered'))
+                info_tag.setTagLine(meta_get(video_data,'tagline'))
+                info_tag.setStudios((meta_get(video_data,'studio') or '',))
+                info_tag.setUniqueIDs({'imdb': meta_get(video_data,'imdb'), 'tmdb':meta_get(video_data,'tmdb')})
+                info_tag.setGenres(meta_get(video_data,'genre').split(', '))
+                info_tag.setWriters(meta_get(video_data,'writer').split(', '))
+                info_tag.setDirectors(meta_get(video_data,'director').split(', '))
+                info_tag.setCast([xbmc_actor(name=item['name'], role=item['role'], thumbnail=item['thumbnail']) for item in meta_get(video_data,'cast')])
+        else:
+            liz.setInfo( type=tt, infoLabels=video_data)
         liz.setProperty( "Fanart_Image", fanart )
         liz.setProperty( "id", id )
         all_v_data=json.dumps(video_data)
@@ -558,6 +628,7 @@ def addLink( name, url,mode,isFolder, iconimage,fanart,description,place_control
             
           if year!='':
                 video_data['year']=year
+                video_data['show_original_year']=year
           if generes!='':
                 video_data['genre']=generes
           if rating!=0:
@@ -612,7 +683,37 @@ def addLink( name, url,mode,isFolder, iconimage,fanart,description,place_control
                     pass
           if trailer!='':
                 video_data['trailer']=trailer
-          liz.setInfo(type="Video", infoLabels=video_data)
+          if KODI_VERSION>19:
+                info_tag = liz.getVideoInfoTag()
+                info_tag.setMediaType(meta_get(video_data,'mediatype'))
+                info_tag.setTitle(meta_get(video_data,'title'))
+                info_tag.setPlot(meta_get(video_data,'plot'))
+                try:
+                    year_info=int(meta_get(video_data,'year'))
+                    if (year_info>0):
+                        info_tag.setYear(year_info)
+                except:
+                    pass
+                try:
+                    info_tag.setRating(float(meta_get(video_data,'rating')))
+                except:
+                    pass
+                info_tag.setVotes(int(meta_get(video_data,'votes')))
+                info_tag.setMpaa(meta_get(video_data,'mpaa'))
+                info_tag.setDuration(int(meta_get(video_data,'duration')))
+                info_tag.setCountries(meta_get(video_data,'country'))
+                
+                info_tag.setTrailer(meta_get(video_data,'trailer'))
+                info_tag.setPremiered(meta_get(video_data,'premiered'))
+                info_tag.setTagLine(meta_get(video_data,'tagline'))
+                info_tag.setStudios((meta_get(video_data,'studio') or '',))
+                info_tag.setUniqueIDs({'imdb': meta_get(video_data,'imdb'), 'tmdb':meta_get(video_data,'tmdb')})
+                info_tag.setGenres(meta_get(video_data,'genre').split(', '))
+                info_tag.setWriters(meta_get(video_data,'writer').split(', '))
+                info_tag.setDirectors(meta_get(video_data,'director').split(', '))
+                info_tag.setCast([xbmc_actor(name=item['name'], role=item['role'], thumbnail=item['thumbnail']) for item in meta_get(video_data,'cast')])
+          else:
+            liz.setInfo(type="Video", infoLabels=video_data)
           art = {}
           art.update({'poster': iconimage,'icon': iconimage,'thumb': iconimage})
           liz.setArt(art)

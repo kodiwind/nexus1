@@ -5,7 +5,8 @@ from  resources.modules.client import get_html
 global global_var,stop_all#global
 global_var=[]
 stop_all=0
-
+import xbmcvfs
+xbmc_tranlate_path=xbmcvfs.translatePath
  
 from resources.modules.general import clean_name,check_link,server_data,replaceHTMLCodes,domain_s,similar,all_colors,base_header
 from  resources.modules import cache
@@ -20,12 +21,12 @@ from resources.modules import log
 
 def get_links(tv_movie,original_title,season_n,episode_n,season,episode,show_original_year,id):
     global global_var,stop_all
-    import xbmc,sys
-    path=xbmc.translatePath('special://home/addons/script.module.resolveurl/lib')
+    import sys
+    path=xbmcvfs.translatePath('special://home/addons/script.module.resolveurl/lib')
     sys.path.append( path)
-    path=xbmc.translatePath('special://home/addons/script.module.six/lib')
+    path=xbmcvfs.translatePath('special://home/addons/script.module.six/lib')
     sys.path.append( path)
-    path=xbmc.translatePath('special://home/addons/script.module.kodi-six/libs')
+    path=xbmcvfs.translatePath('special://home/addons/script.module.kodi-six/libs')
     sys.path.append( path)
     import resolveurl
     
