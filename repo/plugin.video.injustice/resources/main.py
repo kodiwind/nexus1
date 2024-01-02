@@ -3725,8 +3725,6 @@ def main_menu(time_data):
     time_data.append(elapsed_time+222)
     all_d=[]
     
-    aa=addDir3('[B][COLOR mediumslateblue]Injustice Christmas[/COLOR][/B]', 'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Docs/xmls/builds/Morbius/christmas.xml',189,'https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Docs/Pics/injustice/icon.png','https://filedn.com/l0jm1ttNAy54e9NylPPsPVk/Docs/Pics/injustice/fanart.jpg','Injustice Christmas',search_db='')
-    all_d.append(aa)
    
     if Addon.getSetting('movie_motion')=='true':
         aa=addDir3(Addon.getLocalizedString(32024),'www',2,BASE_LOGO+'movies.png',all_fanarts['32024'],'Movies')
@@ -3785,8 +3783,6 @@ def main_menu(time_data):
     key='zWrite'
     mypass=crypt(mypass,key)
 
-    aa=addDir3('Odin', 'http://tazaddon.com/TazClicks/main.json',189,'https://narcacist.com/images/Odin/icon.png','https://narcacist.com/images/Odin/fanart.jpg','Odin',mypass=mypass,search_db='http://tazaddon.com/TazClicks/search.db')
-    all_d.append(aa)
     
     aa=addDir3( 'Search All', 'www',201,BASE_LOGO+'search.png',all_fanarts['32034'],'Search All')
         
