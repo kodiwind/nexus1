@@ -3,7 +3,7 @@
 	<category label="General">
 		
 		
-		<setting id="theme" type="enum" label="32205" values="Injustice|Keshav|Shinobi|Sonic|Bob"  default="0" />
+		<setting id="theme" type="enum" label="32205" values="Injustice|"  default="0" />
 		
 		<setting id="num_p"  type="number"  label="32206" visible="true" default="1"/>
 		<setting id="order_networks" type="enum" label="32207" lvalues="32208|32209|32210"  default="0" />
@@ -157,43 +157,23 @@
 		<!--Movie Sources-->
 
 		<setting id="1337x" label="1337x" type="bool"  default="true" />
-		<setting id="api" label="api" type="bool"  default="true" />
+		<setting id="apibay" label="apibay" type="bool"  default="true" />
 		<setting id="bay" label="bay" type="bool"  default="true" />
 		<setting id="bitcq" label="bitcq" type="bool"  default="true" />
 		<setting id="bitlord" label="bitlord" type="bool"  default="true" />
 		<setting id="bitsearch" label="bitsearch" type="bool"  default="true" />
-		<setting id="btscene" label="btscene" type="bool"  default="true" />
-		<setting id="corn" label="corn" type="bool"  default="true" />
 		<setting id="dl" label="dl" type="bool"  default="true" />
-		<setting id="easynews" label="easynews [COLOR red](Paid)[/COLOR]" type="bool"  default="true" />
-		<setting id="extra" label="extra" type="bool"  default="true" />
-		<setting id="ez" label="ez" type="bool"  default="true" />
 		<setting id="ezio" label="ezio" type="bool"  default="true" />
-		<setting id="furk" label="furk [COLOR red](Paid)[/COLOR]" type="bool"  default="true" />
 		<setting id="glorls" label="glorls" type="bool"  default="true" />
-		<setting id="goo" label="goo [COLOR lightblue](Free)[/COLOR]" type="bool"  default="true" />
 		<setting id="kass" label="kass" type="bool"  default="true" />
-		<setting id="magno" label="magno" type="bool"  default="true" />
-		<setting id="mags" label="mags" type="bool"  default="true" />
-		<setting id="monk" label="monk" type="bool"  default="true" />
-		<setting id="para" label="para" type="bool"  default="true" />
 		<setting id="pirp" label="pirp" type="bool"  default="true" />
-		<setting id="qaz" label="qaz [COLOR lightblue](Free)[/COLOR]" type="bool"  default="true" />
 		<setting id="shrss" label="shrss" type="bool"  default="true" />
-		<setting id="sky" label="sky" type="bool"  default="true" />
 		<setting id="snow" label="snow" type="bool"  default="true" />
 		<setting id="sol" label="sol" type="bool"  default="true" />
-		<setting id="solid" label="solid" type="bool"  default="true" />
-		<setting id="stbay" label="stbay" type="bool"  default="true" />
-		<setting id="thd" label="thd" type="bool"  default="true" />
+		<setting id="tech" label="tech" type="bool"  default="true" />
 		<setting id="torio" label="torio" type="bool"  default="true" />
-		<setting id="torrz" label="torrz" type="bool"  default="true" />
-		<setting id="trpar" label="trpar" type="bool"  default="true" />
 		<setting id="tsdl" label="tsdl" type="bool"  default="true" />
-		<setting id="tse" label="tse" type="bool"  default="true" />
-		<setting id="wshd" label="wshd [COLOR lightblue](Free)[/COLOR]" type="bool"  default="true" />
 		<setting id="yts" label="yts" type="bool"  default="true" />
-		<setting id="zg" label="zg" type="bool"  default="true" />
 
 <!--End Movie Sources-->
 	</category>
@@ -206,43 +186,23 @@
 		<!--TV Sources-->
 
 		<setting id="1337x_tv" label="1337x" type="bool"  default="true" />
-		<setting id="api_tv" label="api" type="bool"  default="true" />
+		<setting id="apibay_tv" label="apibay" type="bool"  default="true" />
 		<setting id="bay_tv" label="bay" type="bool"  default="true" />
 		<setting id="bitcq_tv" label="bitcq" type="bool"  default="true" />
 		<setting id="bitlord_tv" label="bitlord" type="bool"  default="true" />
 		<setting id="bitsearch_tv" label="bitsearch" type="bool"  default="true" />
-		<setting id="btscene_tv" label="btscene" type="bool"  default="true" />
-		<setting id="corn_tv" label="corn" type="bool"  default="true" />
 		<setting id="dl_tv" label="dl" type="bool"  default="true" />
-		<setting id="easynews_tv" label="easynews [COLOR red](Paid)[/COLOR]" type="bool"  default="true" />
-		<setting id="extra_tv" label="extra" type="bool"  default="true" />
-		<setting id="ez_tv" label="ez" type="bool"  default="true" />
 		<setting id="ezio_tv" label="ezio" type="bool"  default="true" />
-		<setting id="furk_tv" label="furk [COLOR red](Paid)[/COLOR]" type="bool"  default="true" />
 		<setting id="glorls_tv" label="glorls" type="bool"  default="true" />
-		<setting id="goo_tv" label="goo [COLOR lightblue](Free)[/COLOR]" type="bool"  default="true" />
 		<setting id="kass_tv" label="kass" type="bool"  default="true" />
-		<setting id="magno_tv" label="magno" type="bool"  default="true" />
-		<setting id="mags_tv" label="mags" type="bool"  default="true" />
-		<setting id="monk_tv" label="monk" type="bool"  default="true" />
-		<setting id="para_tv" label="para" type="bool"  default="true" />
 		<setting id="pirp_tv" label="pirp" type="bool"  default="true" />
-		<setting id="qaz_tv" label="qaz [COLOR lightblue](Free)[/COLOR]" type="bool"  default="true" />
 		<setting id="shrss_tv" label="shrss" type="bool"  default="true" />
-		<setting id="sky_tv" label="sky" type="bool"  default="true" />
 		<setting id="snow_tv" label="snow" type="bool"  default="true" />
 		<setting id="sol_tv" label="sol" type="bool"  default="true" />
-		<setting id="solid_tv" label="solid" type="bool"  default="true" />
-		<setting id="stbay_tv" label="stbay" type="bool"  default="true" />
-		<setting id="thd_tv" label="thd" type="bool"  default="true" />
+		<setting id="tech_tv" label="tech" type="bool"  default="true" />
 		<setting id="torio_tv" label="torio" type="bool"  default="true" />
-		<setting id="torrz_tv" label="torrz" type="bool"  default="true" />
-		<setting id="trpar_tv" label="trpar" type="bool"  default="true" />
 		<setting id="tsdl_tv" label="tsdl" type="bool"  default="true" />
-		<setting id="tse_tv" label="tse" type="bool"  default="true" />
-		<setting id="wshd_tv" label="wshd [COLOR lightblue](Free)[/COLOR]" type="bool"  default="true" />
 		<setting id="yts_tv" label="yts" type="bool"  default="true" />
-		<setting id="zg_tv" label="zg" type="bool"  default="true" />
 
 <!--End TV Sources-->
 	</category>
@@ -306,7 +266,7 @@
 		<setting id="video_type_in_s" type="enum" label="Trailer content"  values="Recommended|Current Movie" default="1"  visible="eq(-5,true)"/>
 		<setting id="fanart_scraping" label="Show fanart in scraping" type="bool"  default="true" />
 		<setting id="sources_window_n" type="enum" label="Sources window style" values="Fancy|Clean|Panel"  default="1" />
-		<setting id="fanart_sources" label="Show fanart in sources" type="bool"  default="true" />
+		<setting id="fanart_sources" label="Show fanart in sources" type="bool"  default="false" />
 		<setting id="add_colors" label="Add colors to results" type="bool"  default="true" />
 		<setting id="show_actors" label="Show actor in clean view(when no trailer)" type="bool"  default="true" />
 		
@@ -320,14 +280,14 @@
 		<setting id="search" label="32020" type="bool"  default="true" />
 		<setting id="search_history" label="32021" type="bool"  default="true" />
 		<setting id="last_link_played" label="32022" type="bool"  default="true" />
-		<setting id="whats_new" label="32028" type="bool"  default="true" />
+		<setting id="whats_new" label="32028" type="bool"  default="false" />
 		<setting id="resume_watching" label="32030" type="bool"  default="true" />
 		<setting id="my_rd_history" label="32031" type="bool"  default="true" />
 		<setting id="rd_Torrents" label="32032" type="bool"  default="true" />
 		<setting id="actor" label="32033" type="bool"  default="true" />
 		<setting id="scraper_check" label="32034" type="bool"  default="false" />
 		<setting id="settings" label="32029" type="bool"  default="true" />		
-		<setting id="doodstream" label="doodstream" type="bool"  default="true" />
+		<setting id="doodstream" label="doodstream" type="bool"  default="false" />
 	</category>
 	<category label="Debug">
 		<setting id="debug" label="debug" type="bool"  default="false" />
@@ -360,7 +320,7 @@
     </category>
 	<category label="IMDB">
 		<setting type="lsep" label="Enter Userid without the ur" />
-		<setting id="imdb_user_0" type="text" label="User 1" default="" />
+		<setting id="imdb_user_0" type="text" label="User 1" default="84970133" />
 		<setting id="imdb_user_1" type="text" label="User 2" default="" />
 		<setting id="imdb_user_2" type="text" label="User 3" default="" />
 		<setting id="imdb_user_3" type="text" label="User 4" default="" />
