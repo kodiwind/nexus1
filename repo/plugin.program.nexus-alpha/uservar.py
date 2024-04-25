@@ -101,7 +101,7 @@ REPOID = 'repository.nexus'
 # Url to Addons.xml file in your repo folder(this is so we can get the latest version)
 REPOADDONXML = 'https://kodiwind.com/repo/zips/addons.xml'
 # Url to folder zip is located in
-REPOZIPURL = 'https://kodiwind.com/repository.nexus-3.1.0.zip'
+REPOZIPURL = 'https://kodiwind.com/repository.nexus-3.1.1.zip'
 #########################################################
 
 #########################################################
